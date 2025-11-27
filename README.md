@@ -1,14 +1,21 @@
 # CodeAuth .NET SDK
+[![NuGet](https://img.shields.io/nuget/v/stripe.net.svg)](https://www.nuget.org/packages/CodeAuthSDK/)
 
-Offical CodeAuth SDK. For more info, check the docs on the [official website](https://docs.codeauth.com).
+Offical CodeAuth SDK. For more info, check the docs on our [official website](https://docs.codeauth.com).
 
 ## Installation
-1. Use the NuGet Package Manager inside your IDE
+From within Visual Studio:
+1. Open the Solution Explorer.
+2. Right-click on a project within your solution.
+3. Click on _Manage NuGet Packages..._
+4. Click on the _Browse_ tab and search for "CodeAuthSDK".
+5. Click on the CodeAuthSDK package, select the appropriate version in the
+   right-tab and click _Install_.
 
 **OR**
 
-2. Install via CLI
-```
+Using the [.NET Core command-line interface (CLI) tools](https://docs.microsoft.com/en-us/dotnet/core/tools/)]
+```sh
 dotnet add package CodeAuthSDK
 ```
 
