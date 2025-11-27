@@ -1,5 +1,5 @@
 # CodeAuth .NET SDK
-[![NuGet](https://img.shields.io/nuget/v/stripe.net.svg)](https://www.nuget.org/packages/CodeAuthSDK/)
+[![NuGet](https://img.shields.io/nuget/v/CodeAuthSDK)](https://www.nuget.org/packages/CodeAuthSDK/)
 
 Offical CodeAuth SDK. For more info, check the docs on our [official website](https://docs.codeauth.com).
 
