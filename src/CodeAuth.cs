@@ -151,7 +151,7 @@ namespace CodeAuthSDK
                     // save to cache if enabled
                     if (UseCache)
                     {
-                        session_cache.GetOrAdd(response_session_token, new SessionCacheData { email = response_email, expiration = response_expiration, refresh_left = response_refresh_left });
+                        session_cache.GetOrAdd(response_session_token!, new SessionCacheData { email = response_email, expiration = response_expiration, refresh_left = response_refresh_left });
                     }
 
                     // returns signin email verify result: session token information
@@ -224,12 +224,12 @@ namespace CodeAuthSDK
 
 
         /// <summary>
-        /// This is the next step after the user signs in with their social account. This request checks the authorization code given by the social media company in order to create a session token.
+        /// This is the next step after the user signs in with their social account. This request checks the code given by the social media company in order to create a session token.
         /// </summary>
         /// <param name="social_type">The type of social OAuth2 url you are trying to verify</param>
-        /// <param name="authorization_code">The authorization code given by the social. Please read the doc for more info.</param>
+        /// <param name="code">The authorization code given by the social. Please read the doc for more info.</param>
         /// <returns></returns>
-        public static async Task<SignInSocialVerifyResult> SignInSocialVerify(string social_type, string authorization_code)
+        public static async Task<SignInSocialVerifyResult> SignInSocialVerify(string social_type, string code)
         {
             // make sure CodeAuth SDK has been initialized
             EnsureInitialized();
@@ -238,7 +238,7 @@ namespace CodeAuthSDK
             try
             {
                 // call server and get response
-                var response = await CallApiRequest("/signin/socialverify", new { project_id = ProjectID, social_type = social_type, authorization_code = authorization_code });
+                var response = await CallApiRequest("/signin/socialverify", new { project_id = ProjectID, social_type = social_type, code = code });
 
                 // handle OK (200) status: the response should have information about session token
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -254,7 +254,7 @@ namespace CodeAuthSDK
                     // save to cache if enabled
                     if (UseCache)
                     {
-                        session_cache.GetOrAdd(response_session_token, new SessionCacheData { email = response_email, expiration = response_expiration, refresh_left = response_refresh_left });
+                        session_cache.GetOrAdd(response_session_token!, new SessionCacheData { email = response_email, expiration = response_expiration, refresh_left = response_refresh_left });
                     }
 
                     // return signin social verify result
@@ -463,7 +463,7 @@ namespace CodeAuthSDK
     public class SignInEmailResult
     {
         /// <summary>
-        /// The error type. Possible error types for this response: BadJson, ProjectNotFound, BadIPAddress, RateLimitReached, BadEmail, CodeRequestIntervalReached, CodeHourlyLimitReached, InternalError
+        /// The error type. Check the <see href="https://docs.codeauth.com">docs</see> for complete list for this result.
         /// </summary>
         public string? error;
     }
@@ -491,7 +491,7 @@ namespace CodeAuthSDK
         public int refresh_left;
 
         /// <summary>
-        /// The error type. Possible error types for this response: BadJson, ProjectNotFound, BadIPAddress, RateLimitReached, BadSocialType, BadCode, InternalError
+        /// The error type. Check the <see href="https://docs.codeauth.com">docs</see> for complete list for this result.
         /// </summary>
         public string? error;
     }
@@ -506,7 +506,7 @@ namespace CodeAuthSDK
         public string? signin_url;
 
         /// <summary>
-        /// The error type. Possible error types for this response: BadJson, ProjectNotFound, BadIPAddress, RateLimitReached, BadSocialType, InternalError
+        /// The error type. Check the <see href="https://docs.codeauth.com">docs</see> for complete list for this result.
         /// </summary>
         public string? error;
     }
@@ -534,7 +534,7 @@ namespace CodeAuthSDK
         public int refresh_left;
 
         /// <summary>
-        /// The error type. Possible error types for this response: BadJson, ProjectNotFound, BadIPAddress, RateLimitReached, BadSocialType, BadAuthorizationCode, InternalError
+        /// The error type. Check the <see href="https://docs.codeauth.com">docs</see> for complete list for this result.
         /// </summary>
         public string? error;
     }
@@ -557,7 +557,7 @@ namespace CodeAuthSDK
         public int refresh_left;
 
         /// <summary>
-        /// The error type. Possible error types for this response: BadJson, ProjectNotFound, BadIPAddress, RateLimitReached, BadSessionToken, InternalError
+        /// The error type. Check the <see href="https://docs.codeauth.com">docs</see> for complete list for this result.
         /// </summary>
         public string? error;
     }
@@ -586,7 +586,7 @@ namespace CodeAuthSDK
         public int refresh_left;
 
         /// <summary>
-        /// The error type. Possible error types for this response: BadJson, ProjectNotFound, BadIPAddress, RateLimitReached, BadSessionToken, OutOfRefresh, InternalError
+        /// The error type. Check the <see href="https://docs.codeauth.com">docs</see> for complete list for this result.
         /// </summary>
         public string? error;
     }
@@ -597,7 +597,7 @@ namespace CodeAuthSDK
     public class SessionInvalidateResult
     {
         /// <summary>
-        /// The error type. Possible error types for this response: BadJson, ProjectNotFound, BadIPAddress, RateLimitReached, BadSessionToken, InternalError
+        /// The error type. Check the <see href="https://docs.codeauth.com">docs</see> for complete list for this result.
         /// </summary>
         public string? error;
     }
